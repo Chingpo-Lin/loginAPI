@@ -12,24 +12,26 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="username:"
+        android:text="@string/username"
         android:textSize="25sp"
-        android:layout_marginTop="100sp"
-        app:layout_constraintHorizontal_bias="0.2"
+        app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.2" />
 
     <EditText
         android:id="@+id/username_enter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter your username"
-
-        app:layout_constraintHorizontal_bias="0.1"
-        android:inputType="textEmailAddress"
-        android:layout_marginTop="95sp"
+        app:layout_constraintVertical_bias="0.2"
+        android:hint="@string/enter_your_username"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toEndOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20sp"
-        android:text="password:"
+        android:text="@string/password"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.2"
@@ -50,9 +52,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="55sp"
-
-        android:hint="Enter your username"
-        android:inputType="textEmailAddress"
+        android:hint="@string/enter_your_username"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -62,7 +63,7 @@
         android:id="@+id/login"
         android:layout_width="300sp"
         android:layout_height="wrap_content"
-        android:text="login"
+        android:text="@string/login"
         android:layout_marginTop="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
