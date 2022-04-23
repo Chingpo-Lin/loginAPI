@@ -21,6 +21,7 @@ import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEditPassword;
     private Button mLoginBtn;
     private String user = "dell3";
-    private String pass = "pass123";
+    private String pass = "pass1234";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         mEditPassword = findViewById(R.id.password_enter);
         mLoginBtn = findViewById(R.id.login);
 
-        System.out.println("wjw");
         Toast.makeText(this, "hello", Toast.LENGTH_LONG).show();
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = mEditUsername.getText().toString();
                 String password = mEditPassword.getText().toString();
+
+                // if choose to hard code
+//                username = user;
+//                password = pass;
+
                 Post(username, password);
             }
         });
@@ -64,17 +69,30 @@ public class MainActivity extends AppCompatActivity {
 
     public void Post(String username, String password) {
 
-        Map<String, String> reqParam = new HashMap<>();
-        reqParam.put("username", user);
-        reqParam.put("password", pass);
-        JSONObject param = new JSONObject(reqParam);
+
+//        Map<String, Map<String, String>> reqParam = new HashMap<>();
+//        Map<String, String> tempMap = new HashMap<>();
+//        tempMap.put("username", username);
+//        tempMap.put("password", password);
+//        reqParam.put("user", tempMap);
+//        JSONObject param = new JSONObject(reqParam);
+
+        JSONObject params = new JSONObject();
+        JSONObject params2 = new JSONObject();
+
+        try {
+            params2.put("username", username);
+            params2.put("password", password);
+            params.put("user", params2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         RequestQueue mQueue = Volley.newRequestQueue(MainActivity.this);
-        JsonObjectRequest request= new JsonObjectRequest(Request.Method.POST, url, param, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request= new JsonObjectRequest(Request.Method.POST, url, params, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
-                Log.d("he", response.toString());
                 System.out.println(response);
             }
 
@@ -82,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("hehe", error.toString());
                 error.printStackTrace();
             }
         }) {
@@ -92,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
                 header.put("Content-Type", "application/json");
                 header.put("Authorization", "secret_key django-insecure-b@$s0n&mw5v$k-)v(" +
                         "nt7u$%f6_s*c*qm8+7g^gbx9utpry$(x6");
-                Log.d("hihi", header.values().toString());
                 return header;
             }
         };
